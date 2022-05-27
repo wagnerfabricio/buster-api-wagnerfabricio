@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { userController } from "../controllers";
-import { createUserSchema } from "../schemas";
+import { createUserSchema, loginUserSchema } from "../schemas";
 import { validadeSchemaMiddleware } from "../middlewares";
 
 const userRoutes = Router();
@@ -10,6 +10,6 @@ userRoutes.post(
   validadeSchemaMiddleware(createUserSchema),
   userController.create
 );
-userRoutes.post("/login");
+userRoutes.post("/login", validadeSchemaMiddleware(loginUserSchema), userController.login);
 
 export default userRoutes;

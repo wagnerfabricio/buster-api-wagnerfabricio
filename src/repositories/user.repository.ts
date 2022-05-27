@@ -4,7 +4,7 @@ import { AppDataSource } from "../data-source";
 import { Request } from "express";
 import { AppError } from "../errors";
 import { sign } from "jsonwebtoken";
-import { ICreateUser } from "../interfaces";
+import { ICreateUser, IUserLogin } from "../interfaces";
 
 class UserRepository {
   private repo: Repository<User>;
@@ -13,29 +13,16 @@ class UserRepository {
     this.repo = AppDataSource.getRepository(User);
   }
 
-  register = async ({ validated }: Request) => {
-    const newUser = this.repo.create({ ...validated });
-    await this.repo.save(newUser);
-    const savedUser = await this.repo.findOneBy({ id: newUser.id });
-    return savedUser;
+  save = async (user: Partial<User>): Promise<User> =>
+    await this.repo.save(user);
+
+  create = async (validated: ICreateUser) => {
+    return this.repo.create(validated);
   };
 
-  // login = async ({ validated }: Request): Promise<string | null> => {
-  //   const user: User = await this.repo.findOneBy({
-  //     email: validated.email,
-  //   });
-
-  //   if (!user) throw new AppError("Invalid credentials", 422);
-
-  //   if (!(await user.comparePwd(validated.password)))
-  //     throw new AppError("Invalid credentials", 422);
-
-  //   const token: string = sign({ ...user }, process.env.SECRET_KEY, {
-  //     expiresIn: process.env.EXPIRES_IN,
-  //   });
-
-  //   return token;
-  // };
+  findOne = async (payload: object): Promise<User> => {
+    return await this.repo.findOneBy({ ...payload });
+  };
 
   retrievePwd = async (id: string): Promise<string> => {
     const requestUser = await this.repo

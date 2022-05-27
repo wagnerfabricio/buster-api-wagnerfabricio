@@ -1,6 +1,6 @@
 interface IUserLogin {
-  status: number;
-  message: object;
+  email: string;
+  password: string;
 }
 
-export default IUserLogin
+export default IUserLogin;

@@ -18,4 +18,4 @@ const validadeSchemaMiddleware =
     }
   };
 
-  export default validadeSchemaMiddleware
+export default validadeSchemaMiddleware;
