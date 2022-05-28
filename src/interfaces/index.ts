@@ -1,4 +1,3 @@
-import IUserLogin from "./user/IUserLogin";
-import ICreateUser from "./user/ICreateUser";
+import ICreateDvd from "./ICreateDvd.interface";
 
-export { IUserLogin, ICreateUser };
+export { ICreateDvd };

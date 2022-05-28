@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AnySchema } from "yup";
 
-const validadeSchemaMiddleware =
+const validateSchemaMiddleware =
   (shape: AnySchema) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -18,4 +18,4 @@ const validadeSchemaMiddleware =
     }
   };
 
-export default validadeSchemaMiddleware;
+export default validateSchemaMiddleware;

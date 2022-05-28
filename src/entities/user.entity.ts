@@ -29,7 +29,7 @@ export class User {
   }
 
   @Column({ default: false })
-  isAdmin: boolean;
+  isAdm: boolean;
 
   comparePwd = async (receivedPwd: string): Promise<any> => {
     return (

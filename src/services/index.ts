@@ -1,3 +1,4 @@
-import userService from "./user/user.service";
+import userService from "./user.service";
+import dvdService from "./dvd.service";
 
-export { userService };
+export { userService, dvdService };

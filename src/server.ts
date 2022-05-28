@@ -19,14 +19,3 @@ AppDataSource.initialize()
   })
   .catch((err) => console.error(err));
 // };
-
-// AppDataSource.initialize()
-//   .then(() => {
-//     console.log("Database connected!");
-//     const port = process.env.PORT ?? 3000;
-
-//     app.listen(port, () => {
-//       console.log(`App running on http://localhost:${port}/`);
-//     });
-//   })
-//   .catch((err) => console.error(err));

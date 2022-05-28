@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { AppError } from "../errors";
+import { AppError } from "../../errors";
 
 const errorHandlerMiddleware = (
   err: Error,
@@ -8,10 +8,7 @@ const errorHandlerMiddleware = (
   __: NextFunction
 ) => {
   if (err instanceof AppError) {
-    return res.status(err.statusCode).json({
-      status: "error",
-      message: err.message,
-    });
+    return res.status(err.statusCode).json({ error: err.message });
   }
 
   return res.status(500).json({
@@ -20,4 +17,4 @@ const errorHandlerMiddleware = (
   });
 };
 
-export default errorHandlerMiddleware
+export default errorHandlerMiddleware;

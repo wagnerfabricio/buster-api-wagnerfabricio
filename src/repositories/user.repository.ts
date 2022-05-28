@@ -1,10 +1,6 @@
 import { User } from "../entities";
 import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
-import { Request } from "express";
-import { AppError } from "../errors";
-import { sign } from "jsonwebtoken";
-import { ICreateUser, IUserLogin } from "../interfaces";
 
 class UserRepository {
   private repo: Repository<User>;
@@ -16,7 +12,7 @@ class UserRepository {
   save = async (user: Partial<User>): Promise<User> =>
     await this.repo.save(user);
 
-  create = async (validated: ICreateUser) => {
+  create = async (validated: User) => {
     return this.repo.create(validated);
   };
 
