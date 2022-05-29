@@ -1,4 +1,4 @@
-import { errorHandlerMiddleware, validateSchemaMiddleware } from "./util";
+import { errorHandlerMiddleware, validateSchemaMiddleware } from "./utils";
 import { isAdmMiddleware, verifyTokenMiddleware } from "./auth";
 import {
   verifyUserExistsMiddleware,

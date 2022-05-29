@@ -7,6 +7,11 @@ export class dvdController {
     return res.status(201).json(newDvd);
   };
 
+  createMany = async (req: Request, res: Response): Promise<Response> => {
+    const newDvdList = await dvdService.registerMany(req);
+    return res.status(201).json(newDvdList);
+  };
+
   retrieveAll = async (_: Request, res: Response): Promise<Response> => {
     const dvdList = await dvdService.retrieveAll();
     return res.status(200).json(dvdList);

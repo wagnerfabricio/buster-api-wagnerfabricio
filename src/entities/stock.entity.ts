@@ -2,6 +2,7 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
@@ -17,4 +18,11 @@ export class Stock {
 
   @Column({ type: "float" })
   price: number;
+
+  @OneToOne(() => Dvd, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
+  @JoinColumn()
+  dvd: Dvd;
 }

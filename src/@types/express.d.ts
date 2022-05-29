@@ -4,7 +4,7 @@ import { ICreateDvd } from "../interfaces";
 declare global {
   namespace Express {
     interface Request {
-      validated: User | ICreateDvd;
+      validated: User | ICreateDvd | ICreateDvd[];
       userId: string;
       decodedUser: User;
     }
