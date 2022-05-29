@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { AnySchema } from "yup";
 import { ICreateDvd } from "../../interfaces";
 
-const validateMultiSchemaMiddleware =
+const validateManySchemaMiddleware =
   (shape: AnySchema, lisOf: string) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -24,4 +24,4 @@ const validateMultiSchemaMiddleware =
     }
   };
 
-export default validateMultiSchemaMiddleware;
+export default validateManySchemaMiddleware;

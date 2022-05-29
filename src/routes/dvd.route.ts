@@ -8,7 +8,6 @@ import {
 } from "../middlewares";
 import { validateMultiSchemaMiddleware } from "../middlewares/utils";
 import { createDvdSchema } from "../schemas";
-import { dvdService } from "../services";
 
 const dvdRoutes = Router();
 
@@ -25,7 +24,6 @@ dvdRoutes.post(
   verifyTokenMiddleware,
   isAdmMiddleware,
   validateMultiSchemaMiddleware(createDvdSchema, "dvds"),
-  // verifyDvdExistsMiddleware,
   dvdController.createMany
 );
 dvdRoutes.get("", dvdController.retrieveAll);
