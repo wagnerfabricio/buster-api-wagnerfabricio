@@ -24,5 +24,6 @@ export class Dvd {
     cascade: true, //habilita cadastrar o stock já no cadastro do dvd...
     onDelete: "CASCADE", //habilida deletar o dvd ao deletar o stock...
   })
+  @JoinColumn()
   stock: Stock;
 }

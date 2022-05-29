@@ -35,11 +35,12 @@ class DvdService {
     const stock = new Stock();
     stock.quantity = quantity;
     stock.price = price;
+
     stock.dvd = newDvd;
 
     newDvd.stock = stock;
 
-    return await stockRepository.save(stock);
+    return await dvdRepository.save(stock);
   };
 
   registerMany = async ({ validated }: Request) => {
