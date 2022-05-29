@@ -1,7 +1,7 @@
 import { Router } from "express";
 
-const orderRoutes = Router();
+const cartRoutes = Router();
 
-orderRoutes.put("/pay");
+cartRoutes.put("/pay");
 
-export default orderRoutes;
+export default cartRoutes;
