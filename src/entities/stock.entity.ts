@@ -19,8 +19,6 @@ export class Stock {
   @Column({ type: "float" })
   price: number;
 
-  @OneToOne(() => Dvd, {
-    onDelete: "CASCADE",
-  })
+  @OneToOne(() => Dvd)
   dvd: Dvd;
 }
