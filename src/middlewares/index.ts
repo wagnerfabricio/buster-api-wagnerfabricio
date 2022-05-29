@@ -5,7 +5,10 @@ import {
   createAdminMiddleware,
   authUserMiddleware,
 } from "./user";
-import { verifyDvdExistsMiddleware } from "./dvd";
+import {
+  verifyDvdExistsMiddleware,
+  validateBuyDvdSchemaMiddleware,
+} from "./dvd";
 
 export {
   errorHandlerMiddleware,
@@ -16,4 +19,5 @@ export {
   verifyDvdExistsMiddleware,
   authUserMiddleware,
   verifyTokenMiddleware,
+  validateBuyDvdSchemaMiddleware,
 };

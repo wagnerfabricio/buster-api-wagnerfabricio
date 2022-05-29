@@ -2,6 +2,7 @@ import { Router } from "express";
 import { cartController, dvdController } from "../controllers";
 import {
   isAdmMiddleware,
+  validateBuyDvdSchemaMiddleware,
   validateSchemaMiddleware,
   verifyDvdExistsMiddleware,
   verifyTokenMiddleware,
@@ -27,6 +28,11 @@ dvdRoutes.post(
   dvdController.createMany
 );
 dvdRoutes.get("", dvdController.retrieveAll);
-dvdRoutes.post("/buy/:dvdId", verifyTokenMiddleware, cartController.buy);
+dvdRoutes.post(
+  "/buy/:dvdId",
+  verifyTokenMiddleware,
+  validateBuyDvdSchemaMiddleware,
+  cartController.buy
+);
 
 export default dvdRoutes;

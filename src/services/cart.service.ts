@@ -1,4 +1,5 @@
 import { Cart, CartDvd } from "../entities";
+import { AppError } from "../errors";
 import {
   cartDvdRepository,
   cartRepository,
@@ -34,6 +35,17 @@ class CartService {
     }
 
     const dvdToAdd = await dvdRepository.findOneBy({ id: dvdId });
+
+    if (!dvdToAdd) {
+      throw new AppError("dvd not found", 404);
+    }
+
+    if (dvdToAdd.stock.quantity < dvdQuantity) {
+      throw new AppError(
+        `current stock: ${dvdToAdd.stock.quantity}, received demand ${dvdQuantity}`,
+        422
+      );
+    }
 
     newCart.user = await userRepository.findOne({ id: userId });
 
