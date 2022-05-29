@@ -1,5 +1,10 @@
-import { Cart } from "../entities";
-import { cartRepository, dvdRepository, userRepository } from "../repositories";
+import { Cart, CartDvd } from "../entities";
+import {
+  cartDvdRepository,
+  cartRepository,
+  dvdRepository,
+  userRepository,
+} from "../repositories";
 
 class CartService {
   verifyUserCart = async (userId: string) => {
@@ -12,8 +17,9 @@ class CartService {
 
   verifyDvdOnCart = async (dvdId: string, cartId: string) => {
     const userCart = await cartRepository.findOneBy({ id: cartId });
-    const dvdList = userCart.dvds;
-    const dvdOnCart = dvdList.find((dvd) => dvd.id === dvdId);
+
+    const dvdOnCart = userCart.dvds.find((cartDvd) => cartDvd.dvd.id === dvdId);
+
     return dvdOnCart;
   };
 
@@ -22,7 +28,10 @@ class CartService {
 
     const newCart = new Cart();
 
-    if (userCart) newCart.id = userCart.id;
+    if (userCart) {
+      newCart.id = userCart.id;
+      newCart.dvds = userCart.dvds;
+    }
 
     const dvdToAdd = await dvdRepository.findOneBy({ id: dvdId });
 
@@ -31,15 +40,42 @@ class CartService {
     const dvdOnCart =
       userCart && (await this.verifyDvdOnCart(dvdId, userCart.id));
 
-    newCart.dvds = dvdOnCart
-      ? [...userCart.dvds]
-      : [...userCart.dvds, dvdToAdd];
+    if (dvdOnCart) {
+      dvdOnCart.quantity += dvdQuantity;
 
-    newCart.total = userCart
-      ? userCart.total + dvdToAdd.stock.price * dvdQuantity
-      : dvdToAdd.stock.price * dvdQuantity;
+      dvdOnCart.subtotal = dvdOnCart.quantity * dvdToAdd.stock.price;
 
-    return await cartRepository.save(newCart);
+      const filteredCartDvds = userCart.dvds.filter(
+        (cartDvd) => cartDvd.id !== dvdOnCart.id
+      );
+
+      filteredCartDvds.push(dvdOnCart);
+
+      newCart.total = filteredCartDvds.reduce(
+        (acc, cartDvd) => cartDvd.subtotal + acc,
+        0
+      );
+
+      newCart.dvds = filteredCartDvds;
+
+      return await cartRepository.save(newCart);
+    }
+
+    const newCartDvd = new CartDvd();
+    newCartDvd.quantity = dvdQuantity;
+    newCartDvd.subtotal = dvdQuantity * dvdToAdd.stock.price;
+    newCartDvd.dvd = dvdToAdd;
+
+    newCart.dvds = newCart.dvds ? [...newCart.dvds, newCartDvd] : [newCartDvd];
+
+    newCart.total = newCart.dvds.reduce(
+      (acc, cartDvd) => cartDvd.subtotal + acc,
+      0
+    );
+
+    await cartRepository.save(newCart);
+
+    return await cartRepository.findOneBy({ id: newCart.id });
   };
 }
 

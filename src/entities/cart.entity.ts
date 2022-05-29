@@ -5,9 +5,11 @@ import {
   JoinTable,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { CartDvd } from "./cartdvd.entity";
 import { Dvd } from "./dvd.entity";
 import { User } from "./user.entity";
 
@@ -29,7 +31,9 @@ export class Cart {
   @JoinColumn()
   user: User;
 
-  @ManyToMany((type) => Dvd, { eager: true })
-  @JoinTable()
-  dvds: Dvd[];
+  @OneToMany((type) => CartDvd, (cartDvd) => cartDvd.cart, {
+    cascade: true,
+    eager: true,
+  })
+  dvds: CartDvd[];
 }

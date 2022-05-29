@@ -9,6 +9,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Cart } from "./cart.entity";
+import { CartDvd } from "./cartdvd.entity";
 import { Stock } from "./stock.entity";
 
 @Entity("dvd")
@@ -30,4 +31,7 @@ export class Dvd {
   })
   @JoinColumn()
   stock: Stock;
+
+  @OneToMany((type) => CartDvd, (cartDvd) => cartDvd.dvd)
+  cartDvds: CartDvd[];
 }
