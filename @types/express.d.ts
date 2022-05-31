@@ -1,5 +1,5 @@
-import { User } from "../entities";
-import { ICreateDvd } from "../interfaces";
+import { User } from "../src/entities";
+import { ICreateDvd } from "../src/interfaces";
 
 declare global {
   namespace Express {

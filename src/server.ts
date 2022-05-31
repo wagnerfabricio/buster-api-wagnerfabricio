@@ -4,18 +4,17 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-// async () => {
-//   await
 AppDataSource.initialize()
   .then(() => {
-    console.log("\n==========================================================");
-    console.log("💾: Database connected");
+    console.log("==========================================================");
+    console.log("Database connected");
   })
   .then(() => {
     const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () =>
-      console.log(`🚀: Server started at http://localhost:${PORT}`)
-    );
+    app.listen(PORT, () => {
+      console.log("Data Source initialized");
+      console.log("==========================================================");
+      return;
+    });
   })
   .catch((err) => console.error(err));
-// };
