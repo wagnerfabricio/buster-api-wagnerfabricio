@@ -12,14 +12,14 @@ export const AppDataSource = new DataSource({
     process.env.NODE_ENV === "production"
       ? { rejectUnauthorized: false }
       : false,
-  synchronize: true,
+  synchronize: false,
   logging: true,
   entities:
     process.env.NODE_ENV === "production"
-      ? ["dist/entities/**/*.js"]
+      ? ["dist/src/entities/*.js"]
       : [path.join(__dirname, "./entities/**/*.{js,ts}")],
   migrations:
     process.env.NODE_ENV === "production"
-      ? ["dist/migrations/**/*.js"]
+      ? ["dist/src/migrations/*.js"]
       : [path.join(__dirname, "./migrations/**/*.{js,ts}")],
 });
