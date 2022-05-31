@@ -1,4 +1,10 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { Dvd } from "./dvd.entity";
 
 @Entity("stock")
@@ -12,6 +18,9 @@ export class Stock {
   @Column({ type: "float" })
   price: number;
 
-  @OneToOne(() => Dvd)
+  @OneToOne(() => Dvd, (dvd) => dvd.stock, {
+    onDelete: "CASCADE", //habilida deletar o stock ao deletar o dvd...
+  })
+  @JoinColumn()
   dvd: Dvd;
 }

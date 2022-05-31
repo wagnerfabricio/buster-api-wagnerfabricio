@@ -7,6 +7,7 @@ import {
   verifyDvdExistsMiddleware,
   verifyTokenMiddleware,
 } from "../middlewares";
+import { verifyDvdExistsOnInsertManyMiddleware } from "../middlewares/dvd";
 import { validateMultiSchemaMiddleware } from "../middlewares/utils";
 import { createDvdSchema } from "../schemas";
 
@@ -25,6 +26,7 @@ dvdRoutes.post(
   verifyTokenMiddleware,
   isAdmMiddleware,
   validateMultiSchemaMiddleware(createDvdSchema, "dvds"),
+  verifyDvdExistsOnInsertManyMiddleware,
   dvdController.createMany
 );
 dvdRoutes.get("", dvdController.retrieveAll);

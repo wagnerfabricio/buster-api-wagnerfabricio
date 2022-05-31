@@ -24,13 +24,11 @@ export class Dvd {
   @Column()
   duration: string;
 
-  @OneToOne(() => Stock, {
-    nullable: false,
+  @OneToOne(() => Stock, (stock) => stock.dvd, {
     eager: true,
-    cascade: true, //habilita cadastrar o stock já no cadastro do dvd...
-    onDelete: "CASCADE", //habilida deletar o dvd ao deletar o stock...
+    nullable: false,
+    cascade: true,
   })
-  @JoinColumn()
   stock: Stock;
 
   @OneToMany((type) => CartDvd, (cartDvd) => cartDvd.dvd)
