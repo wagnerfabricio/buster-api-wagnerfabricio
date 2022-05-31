@@ -1,4 +1,4 @@
-import { Cart, CartDvd } from "../entities";
+import { Cart, CartDvd, Dvd } from "../entities";
 import { AppError } from "../errors";
 import {
   cartDvdRepository,
@@ -24,16 +24,49 @@ class CartService {
     return dvdOnCart;
   };
 
+  addNewDvdToCart = (userCart: Cart, dvdToAdd: Dvd, dvdQuantity: number) => {
+    const newCartDvd = new CartDvd();
+    newCartDvd.quantity = dvdQuantity;
+    newCartDvd.subtotal = dvdQuantity * dvdToAdd.stock.price;
+    newCartDvd.dvd = dvdToAdd;
+
+    userCart.dvds = userCart.dvds
+      ? [...userCart.dvds, newCartDvd]
+      : [newCartDvd];
+
+    userCart.total = userCart.dvds.reduce(
+      (acc, cartDvd) => cartDvd.subtotal + acc,
+      0
+    );
+  };
+
+  increaseDvdQuantity = async (
+    userCart: Cart,
+    dvdToAdd: Dvd,
+    dvdOnCart: CartDvd,
+    dvdQuantity: number
+  ) => {
+    dvdOnCart.quantity += dvdQuantity;
+
+    dvdOnCart.subtotal = dvdOnCart.quantity * dvdToAdd.stock.price;
+
+    const filteredCartDvds = userCart.dvds.filter(
+      (cartDvd) => cartDvd.id !== dvdOnCart.id
+    );
+
+    filteredCartDvds.push(dvdOnCart);
+
+    userCart.total = filteredCartDvds.reduce(
+      (acc, cartDvd) => cartDvd.subtotal + acc,
+      0
+    );
+
+    userCart.dvds = filteredCartDvds;
+
+    return await cartRepository.save(userCart);
+  };
+
   buyProduct = async (userId: string, dvdId: string, dvdQuantity: number) => {
-    const userCart = await this.verifyUserCart(userId);
-
-    const newCart = new Cart();
-
-    if (userCart) {
-      newCart.id = userCart.id;
-      newCart.dvds = userCart.dvds;
-    }
-
     const dvdToAdd = await dvdRepository.findOneBy({ id: dvdId });
 
     if (!dvdToAdd) {
@@ -47,47 +80,31 @@ class CartService {
       );
     }
 
-    newCart.user = await userRepository.findOne({ id: userId });
+    let userCart = await this.verifyUserCart(userId);
 
     const dvdOnCart =
       userCart && (await this.verifyDvdOnCart(dvdId, userCart.id));
 
-    if (dvdOnCart) {
-      dvdOnCart.quantity += dvdQuantity;
-
-      dvdOnCart.subtotal = dvdOnCart.quantity * dvdToAdd.stock.price;
-
-      const filteredCartDvds = userCart.dvds.filter(
-        (cartDvd) => cartDvd.id !== dvdOnCart.id
-      );
-
-      filteredCartDvds.push(dvdOnCart);
-
-      newCart.total = filteredCartDvds.reduce(
-        (acc, cartDvd) => cartDvd.subtotal + acc,
-        0
-      );
-
-      newCart.dvds = filteredCartDvds;
-
-      return await cartRepository.save(newCart);
+    if (!userCart) {
+      userCart = new Cart();
     }
 
-    const newCartDvd = new CartDvd();
-    newCartDvd.quantity = dvdQuantity;
-    newCartDvd.subtotal = dvdQuantity * dvdToAdd.stock.price;
-    newCartDvd.dvd = dvdToAdd;
+    userCart.user = await userRepository.findOne({ id: userId });
 
-    newCart.dvds = newCart.dvds ? [...newCart.dvds, newCartDvd] : [newCartDvd];
+    if (dvdOnCart) {
+      return await this.increaseDvdQuantity(
+        userCart,
+        dvdToAdd,
+        dvdOnCart,
+        dvdQuantity
+      );
+    }
 
-    newCart.total = newCart.dvds.reduce(
-      (acc, cartDvd) => cartDvd.subtotal + acc,
-      0
-    );
+    this.addNewDvdToCart(userCart, dvdToAdd, dvdQuantity);
 
-    await cartRepository.save(newCart);
+    await cartRepository.save(userCart);
 
-    return await cartRepository.findOneBy({ id: newCart.id });
+    return await cartRepository.findOneBy({ id: userCart.id });
   };
 }
 

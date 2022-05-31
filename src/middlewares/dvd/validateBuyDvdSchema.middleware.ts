@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import * as yup from "yup";
 
 const buyDvdSchema = yup.object().shape({
-  dvdId: yup.string().required(),
+  dvdId: yup.string().uuid().required(),
   quantity: yup.number().required(),
 });
 

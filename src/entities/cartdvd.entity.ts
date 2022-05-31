@@ -13,7 +13,10 @@ export class CartDvd {
   @Column({ type: "float", default: 0 })
   subtotal: number;
 
-  @ManyToOne((type) => Cart, (cart) => cart.dvds, {nullable: false })
+  @ManyToOne((type) => Cart, (cart) => cart.dvds, {
+    nullable: false,
+    onDelete: "CASCADE",
+  })
   cart: Cart;
 
   @ManyToOne((type) => Dvd, (dvd) => dvd.cartDvds, {
