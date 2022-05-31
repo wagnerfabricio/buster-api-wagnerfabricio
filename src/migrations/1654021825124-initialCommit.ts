@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from "typeorm"
 
-export class initialCommit1654021525530 implements MigrationInterface {
+export class initialCommit1654021825124 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
     }
