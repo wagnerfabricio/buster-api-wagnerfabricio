@@ -5,9 +5,13 @@
   "repository": "git@github.com:Kenzie-Academy-Brasil-Developers/q4-sprint2-kenzie-buster-wagnerfabricio.git",
   "author": "Vagner Fabricio <wagnerfabricio@hotmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "17.6.0",
+    "npm": "8.5.1",
+    "yarn": "1.22.18"
+  },
   "scripts": {
     "dev": "ts-node-dev --files --rs src/server.ts",
-    "start": "node dist/server.js",
     "build": "tsc",
     "migration:create": "typeorm-ts-node-commonjs migration:create",
     "migration:generate": "typeorm-ts-node-commonjs migration:generate -d ./src/data-source.ts",
