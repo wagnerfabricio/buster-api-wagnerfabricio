@@ -10,6 +10,7 @@ import {
 } from "typeorm";
 import { Cart } from "./cart.entity";
 import { CartDvd } from "./cartdvd.entity";
+import { OrderDvd } from "./orderDvd.entity";
 import { Stock } from "./stock.entity";
 
 @Entity("dvd")
@@ -34,4 +35,7 @@ export class Dvd {
 
   @OneToMany((type) => CartDvd, (cartDvd) => cartDvd.dvd)
   cartDvds: CartDvd[];
+
+  @OneToMany((type) => OrderDvd, (orderDvd) => orderDvd.dvd)
+  dvds: OrderDvd[];
 }

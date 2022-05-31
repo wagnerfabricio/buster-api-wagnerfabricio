@@ -1,11 +1,6 @@
 import { Cart, CartDvd, Dvd } from "../entities";
 import { AppError } from "../errors";
-import {
-  cartDvdRepository,
-  cartRepository,
-  dvdRepository,
-  userRepository,
-} from "../repositories";
+import { cartRepository, dvdRepository, userRepository } from "../repositories";
 
 class CartService {
   verifyUserCart = async (userId: string) => {
@@ -47,6 +42,17 @@ class CartService {
     dvdQuantity: number
   ) => {
     dvdOnCart.quantity += dvdQuantity;
+
+    if (dvdOnCart.quantity > dvdToAdd.stock.quantity) {
+      throw new AppError(
+        `current stock: ${
+          dvdToAdd.stock.quantity
+        }, received demand ${dvdQuantity}, already on cart ${
+          dvdOnCart.quantity - dvdQuantity
+        }, total: ${dvdOnCart.quantity}`,
+        422
+      );
+    }
 
     dvdOnCart.subtotal = dvdOnCart.quantity * dvdToAdd.stock.price;
 

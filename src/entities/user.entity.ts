@@ -4,9 +4,13 @@ import {
   Column,
   BeforeInsert,
   BeforeUpdate,
+  OneToMany,
+  OneToOne,
 } from "typeorm";
 import { compare, hash } from "bcrypt";
 import userRepository from "../repositories/user.repository";
+import { Order } from "./order.entity";
+import { Cart } from "./cart.entity";
 
 @Entity("users")
 export class User {
@@ -30,6 +34,12 @@ export class User {
 
   @Column({ default: false })
   isAdm: boolean;
+
+  @OneToOne((type) => Cart, (cart) => cart.user, { lazy: true })
+  cart?: Cart;
+
+  @OneToMany((type) => Order, (order) => order.user, { lazy: true })
+  orders: Order[];
 
   comparePwd = async (receivedPwd: string): Promise<any> => {
     return (

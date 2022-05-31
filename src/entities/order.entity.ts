@@ -1,39 +1,42 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { CartDvd } from "./cartdvd.entity";
+import { Cart } from "./cart.entity";
 import { Dvd } from "./dvd.entity";
+import { OrderDvd } from "./orderDvd.entity";
 import { User } from "./user.entity";
 
-@Entity("cart")
-export class Cart {
+@Entity("orders")
+export class Order {
   @PrimaryGeneratedColumn("uuid")
-  id?: string;
+  readonly id?: string;
 
-  @Column({ default: false })
+  @CreateDateColumn()
+  readonly createdAt?: Date;
+
+  @Column({ default: true })
   paid: boolean;
 
   @Column({ type: "float", default: 0 })
   total: number;
 
-  @OneToOne(() => User, (user) => user.cart, {
+  @ManyToOne((type) => User, (user) => user.orders, {
     nullable: false,
     eager: true,
+    onDelete: "CASCADE",
   })
   @JoinColumn()
   user: User;
 
-  @OneToMany((type) => CartDvd, (cartDvd) => cartDvd.cart, {
+  @OneToMany((type) => OrderDvd, (orderDvd) => orderDvd.order, {
     cascade: true,
     eager: true,
   })
-  dvds: CartDvd[];
+  dvds: OrderDvd[];
 }
