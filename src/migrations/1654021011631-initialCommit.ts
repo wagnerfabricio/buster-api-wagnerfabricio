@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export class initialCommit1654007020572 implements MigrationInterface {
-  name = "initialCommit1654007020572";
+export class initialCommit1654021011631 implements MigrationInterface {
+  name = "initialCommit1654021011631";
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
