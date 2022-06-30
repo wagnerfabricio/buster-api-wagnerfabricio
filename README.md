@@ -6,21 +6,30 @@
 
 Buster api is a small API for a DVD store based on NodeJS.
 
+<td valign="top" width="33%">
+
 ## Techs:
 
-<div align="center">
+<div align="center">  
+<img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/javascript-original.svg" alt="JavaScript" height="50" />  
+<img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/typescript-original.svg" alt="TypeScript" height="50" />  
+<img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/nodejs-original-wordmark.svg" alt="Node.js" height="50" />  
+<img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/express-original-wordmark.svg" alt="Express.js" height="50" />  
+<img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/postgresql-original-wordmark.svg" alt="PostgreSQL" height="50" />  
+<img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/docker-original-wordmark.svg" alt="Docker" height="50" />  
+</div>
+
+</td>
+
+<!-- <div align="center">
 <div style="display: flex">
-<p>![JavaScript Logo](readme/Untitled.png)</p>
-<p>![TypeScript Logo](readme/Untitled%201.png)</p>
-
-<p>![Node Logo](readme/Untitled%202.png)</p>
-
-<p>![PostgreSQL Logo](readme/Untitled%203.png)</p>
-
-<p>![Express Logo](readme/Untitled%204.png)</p>
-
+<img src="./readme/javascript.png" alt="JavaScript Logo" />
+<img src="./readme/typescript.png" alt="TypeScript Logo" />
+<img src="./readme/nodejs.png" alt="NodeJS Logo" />
+<img src="./readme/postgresql.png" alt="Postgre SQL Logo" />
+<img src="./readme/express.png" alt="Express Logo" />
 </div>
-</div>
+</div> -->
 
 ---
 
