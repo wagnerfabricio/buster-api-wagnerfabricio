@@ -1,4 +1,4 @@
-# Readme.md
+# Readme
 
 # Buster API
 
@@ -9,18 +9,24 @@ Buster api is a small API for a DVD store based on NodeJS.
 ## Techs:
 
 <div align="center">
-<img style="margin: 10px" src="[https://profilinator.rishav.dev/skills-assets/javascript-original.svg](https://profilinator.rishav.dev/skills-assets/javascript-original.svg)" alt="JavaScript" height="50" />
-<img style="margin: 10px" src="[https://profilinator.rishav.dev/skills-assets/typescript-original.svg](https://profilinator.rishav.dev/skills-assets/typescript-original.svg)" alt="TypeScript" height="50" />
-<img style="margin: 10px" src="[https://profilinator.rishav.dev/skills-assets/nodejs-original-wordmark.svg](https://profilinator.rishav.dev/skills-assets/nodejs-original-wordmark.svg)" alt="Node.js" height="50" />
-<img style="margin: 10px" src="[https://profilinator.rishav.dev/skills-assets/express-original-wordmark.svg](https://profilinator.rishav.dev/skills-assets/express-original-wordmark.svg)" alt="Express.js" height="50" />
-<img style="margin: 10px" src="[https://profilinator.rishav.dev/skills-assets/postgresql-original-wordmark.svg](https://profilinator.rishav.dev/skills-assets/postgresql-original-wordmark.svg)" alt="PostgreSQL" height="50" />
+
+![Untitled](readme/Untitled.png)
+
+![Untitled](readme/Untitled%201.png)
+
+![Untitled](readme/Untitled%202.png)
+
+![Untitled](readme/Untitled%203.png)
+
+![Untitled](readme/Untitled%204.png)
+
 </div>
 
 ---
 
 ## Database tables:
 
-![DatabaseIlustration](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F70131517-bc1d-496c-9435-78e8a9686b55%2FUntitled.png?table=block&id=14306be3-0026-40f5-ba77-e16bb9f9fa2c&spaceId=49b3ecef-2830-449a-a7e5-5a4d563da71b&width=1930&userId=0b92153b-6cf6-4c84-808d-7a4a087d7f99&cache=v2)
+![Untitled](Readme%207dd5789fd0c84a03ab062a063c44e676/Untitled%205.png)
 
 ---
 
