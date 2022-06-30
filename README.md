@@ -19,9 +19,9 @@ Buster api is a small API for a DVD store based on NodeJS.
 
 ## Database tables:
 
-<td valign="top" width="33%">
+<td valign="top" width="100%">
 <div align="center">  
-<img style="margin: 10px" src="readme/database.png" alt="Database table with data" height="50" />  
+<img style="margin: 10px" src="readme/database.png" alt="Database table with data" height="100" />  
 </div>
 </td>
 
