@@ -1,8 +1,4 @@
-# Readme
-
 # Buster API
-
----
 
 Buster api is a small API for a DVD store based on NodeJS.
 
@@ -21,23 +17,12 @@ Buster api is a small API for a DVD store based on NodeJS.
 
 </td>
 
-<!-- <div align="center">
-<div style="display: flex">
-<img src="./readme/javascript.png" alt="JavaScript Logo" />
-<img src="./readme/typescript.png" alt="TypeScript Logo" />
-<img src="./readme/nodejs.png" alt="NodeJS Logo" />
-<img src="./readme/postgresql.png" alt="Postgre SQL Logo" />
-<img src="./readme/express.png" alt="Express Logo" />
-</div>
-</div> -->
-
----
-
 ## Database tables:
+<td valign="top" width="33%">
 
 ![Untitled](readme/Untitled%205.png)
 
----
+</td>
 
 ## Endpoints:
 
@@ -161,6 +146,8 @@ Buster api is a small API for a DVD store based on NodeJS.
       }
       ```
 
+---
+
 - **POST /api/users/login:**
   Login route.
   body:
@@ -201,6 +188,9 @@ Buster api is a small API for a DVD store based on NodeJS.
           ]
       }
       ```
+
+---
+
 - **POST /api/dvds/register**
   Register new dvds, only users class admin are abble to add new dvds.
   Necessary send Admin authentication token on Header
@@ -304,6 +294,10 @@ Buster api is a small API for a DVD store based on NodeJS.
           "error": "missing admin permission"
       }
       ```
+
+---
+
+
 - **GET /api/dvds**
   Return all dvds on database.
   Body:
@@ -327,6 +321,9 @@ Buster api is a small API for a DVD store based on NodeJS.
       ...
   ]
   ```
+
+---
+
 - **POST /api/dvds/buy/:dvdId**
   Buy a dvd by id
   Necessery user authentication token on headers
@@ -422,6 +419,9 @@ Buster api is a small API for a DVD store based on NodeJS.
           "error": "current stock: 22, received demand 400"
       }
       ```
+
+---
+
 - **PUT /api/carts/pay**
   Pay acctual user cart, transform into a order.
   Body:
