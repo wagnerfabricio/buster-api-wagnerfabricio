@@ -10,16 +10,14 @@ Buster api is a small API for a DVD store based on NodeJS.
 
 <div align="center">
 <div style="display: flex">
+<p>![JavaScript Logo](readme/Untitled.png)</p>
+<p>![TypeScript Logo](readme/Untitled%201.png)</p>
 
-![JavaScript Logo](readme/Untitled.png)
+<p>![Node Logo](readme/Untitled%202.png)</p>
 
-![TypeScript Logo](readme/Untitled%201.png)
+<p>![PostgreSQL Logo](readme/Untitled%203.png)</p>
 
-![Node Logo](readme/Untitled%202.png)
-
-![PostgreSQL Logo](readme/Untitled%203.png)
-
-![Express Logo](readme/Untitled%204.png)
+<p>![Express Logo](readme/Untitled%204.png)</p>
 
 </div>
 </div>
@@ -40,6 +38,7 @@ Buster api is a small API for a DVD store based on NodeJS.
   Create a new user.
   In order to create a new user class admin, its necessary send a admin Athentication token on header. For regular users, it's not necessary.
   body:
+
   ```bash
   {
       "email": "eduardo@mail.com.br",
@@ -47,7 +46,9 @@ Buster api is a small API for a DVD store based on NodeJS.
       "password": "1234"
   }
   ```
+
   Reponse:
+
   - Status 201 - CREATED
 
     ```tsx
@@ -60,6 +61,7 @@ Buster api is a small API for a DVD store based on NodeJS.
     ```
 
   - Error responses examples:
+
     - **Status 400 BAD REQUEST**
 
       In case of missing same required information
@@ -149,6 +151,7 @@ Buster api is a small API for a DVD store based on NodeJS.
           "error": "missing authorization token"
       }
       ```
+
 - **POST /api/users/login:**
   Login route.
   body:
